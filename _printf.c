@@ -61,5 +61,6 @@ int _printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
+	putchar('\n');
 	return (num_chars_printed);
 }
