@@ -24,7 +24,6 @@ static int print_string(char *s)
 		putchar(*s++);
 		count++;
 	}
-	count++;
 	return (count);
 }
 /**
@@ -68,4 +67,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-
