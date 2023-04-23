@@ -1,0 +1,71 @@
+#include "main.h"
+
+/**
+ * _putchar - writes a character to standard output
+ * @c: the character to write
+ *
+ * Return: On success, return 1. On error, return -1.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
+ * _printf - prints formatted output to standard output
+ * @format: the format string
+ * @...: variable arguments to be formatted
+ *
+ * Return: The number of characters printed (excluding the null byte used to end output to strings).
+ */
+int _printf(const char *format, ...)
+{
+	va_list args; // define variable argument list
+	int count = 0; // initialize count to 0
+
+	va_start(args, format); // initialize variable argument list
+	while (*format != '\0') // loop through each character in the format string
+	{
+		if (*format == '%') // check for conversion specifier
+		{
+			format++; // move to next character after %
+			if (*format == 'c') // handle character conversion specifier
+            		{
+				char c = va_arg(args, int); // retrieve character argument
+				_putchar(c); // output character
+				count++; // increment count
+			}
+			else if (*format == 's') // handle string conversion specifier
+			{
+				char *s = va_arg(args, char *); // retrieve string argument
+
+				while (*s != '\0') // loop through each character in string
+				{
+					_putchar(*s); // output character
+					count++; // increment count
+					s++; // move to next character
+				}
+			}
+			else if (*format == '%') // handle literal % character
+			{
+				_putchar('%'); // output %
+				count++; // increment count
+			}
+			else // handle unrecognized conversion specifier
+			{
+				_putchar('%'); // output %
+				_putchar(*format); // output unrecognized character
+				count += 2; // increment count by 2
+			}
+		}
+		else // handle normal character
+		{
+			_putchar(*format); // output character
+			count++; // increment count
+		}
+		format++; // move to next character in format string
+	}
+	va_end(args); // clean up variable argument list
+	return (count); // return total count of characters printed
+}
+
