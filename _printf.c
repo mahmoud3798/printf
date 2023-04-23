@@ -24,6 +24,7 @@ static int print_string(char *s)
 		putchar(*s++);
 		count++;
 	}
+	count++;
 	return (count);
 }
 /**
