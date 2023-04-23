@@ -1,69 +1,61 @@
 #include "main.h"
+/**
+ * _putchar - writes a character to stdout
+ * @c: the character to write
+ *
+ * Return: the number of characters written (1) or -1 on failure
+ */
+static int _putchar(char c)
+{
+	return (write(STDOUT_FILENO, &c, 1) == 1 ? 1 : -1);
+}
 
 /**
-* print_char - Helper function to print a single character
-* @c: char variable
-* Return: the number of characters printed (always 1)
-*/
-static int print_char(char c)
-{
-	putchar(c);
-	return (1);
-}
-/**
-* print_string - Helper function to print a null-terminated string
-* @s: pointer
-* Return:the number of characters printed
-*/
-static int print_string(char *s)
-{
-	int count = 0;
-
-	while (*s)
-	{
-		putchar(*s++);
-		count++;
-	}
-	return (count);
-}
-/**
-* _printf - function that handles format strings with %c, %s, and %%
-* @format: char pointer
-* @...: pointer
-* Return: integer
-*/
+ * _printf - produces output according to a format
+ * @format: the format string
+ *
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int printed = 0;
 
 	va_start(args, format);
+
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
+			switch (*format)
 			{
-				char c = (char)va_arg(args, int);
-
-				count += print_char(c);
-			}
-			else if (*format == 's')
-			{
-				char *s = va_arg(args, char *);
-
-				count += print_string(s);
-			}
-			else if (*format == '%')
-			{
-				count += print_char('%');
+				case 'c':
+					printed += _putchar(va_arg(args, int));
+					break;
+				case 's':
+					printed += write(STDOUT_FILENO, va_arg(args, char *), 0);
+					break;
+				case '%':
+					printed += _putchar('%');
+					break;
+				default:
+					_putchar('%');
+					_putchar(*format);
+					printed += 2;
+					break;
 			}
 		}
 		else
-			count += print_char(*format);
+		{
+			printed += _putchar(*format);
+		}
+
 		format++;
 	}
+
 	va_end(args);
-	return (count);
+
+	return (printed);
 }
+
