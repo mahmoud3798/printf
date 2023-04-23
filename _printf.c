@@ -1,27 +1,19 @@
 #include "main.h"
 
 /**
-* _printf - function works as printf
-* @format: char pointer
-* @...: pointer
-* Return: integer
-*/
-
-/** 
 * print_char - Helper function to print a single character
 * @c: char variable
-* Returns the number of characters printed (always 1)
+* Return: the number of characters printed (always 1)
 */
 static int print_char(char c)
 {
 	putchar(c);
 	return (1);
 }
-
 /**
 * print_string - Helper function to print a null-terminated string
 * @s: pointer
-* Returns the number of characters printed
+* Return:the number of characters printed
 */
 static int print_string(char *s)
 {
