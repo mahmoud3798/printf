@@ -86,17 +86,17 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 				count = print_percent(count);
 
-			/**else
-			*{
-			*	_putchar('%');
-			*	_putchar(*format);
-			*	count += 2;
-			*}*/
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+			}
 		}
 		else
 		{
 			_putchar(*format);
-			count++;
+			/*count++;*/
 		}
 
 		format++;
