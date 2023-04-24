@@ -79,6 +79,8 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (format == NULL)
+				return (-1);
 			if (*format == 'c')
 				count = print_char(args, count);
 			else if (*format == 's')
