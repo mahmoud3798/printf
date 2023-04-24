@@ -91,13 +91,13 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				_putchar(*format);
-				count ++;
+				count += 2;
 			}
 		}
 		else
 		{
-			_putchar(*format);
-			count++;
+			/*_putchar(*format);*/
+			count += _putchar(*format);
 		}
 
 		format++;
