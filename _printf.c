@@ -77,16 +77,12 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-
 			if (*format == 'c')
 				count = print_char(args, count);
-
 			else if (*format == 's')
 				count = print_string(args, count);
-
 			else if (*format == '%')
 				count = print_percent(count);
-
 			else
 			{
 				_putchar('%');
@@ -95,10 +91,7 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-		{
-			/*_putchar(*format);*/
 			count += _putchar(*format);
-		}
 
 		format++;
 	}
