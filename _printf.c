@@ -91,7 +91,7 @@ int _printf(const char *format, ...)
 			{
 				_putchar('%');
 				_putchar(*format);
-				count += 2;
+				count ++;
 			}
 		}
 		else
@@ -103,6 +103,5 @@ int _printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
-	_putchar('\n');
 	return (count);
 }
