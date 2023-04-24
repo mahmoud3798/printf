@@ -72,14 +72,12 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-			if (format == NULL)
+			if (*format == NULL)
 				return (-1);
 			if (*format == 'c')
 				count = print_char(args, count);
