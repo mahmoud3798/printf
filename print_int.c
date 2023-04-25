@@ -8,7 +8,7 @@
  * Return: count.
  */
 
-int print_int(va_list args, int count)
+int print_int(va_list args)
 {
 	int n = va_arg(args, int);
 	int l = 0, i = 0, j, num = n;
