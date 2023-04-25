@@ -91,7 +91,7 @@ int _printf(const char *format, ...)
 			format++;
 			if (format == NULL)
 				return (-1);
-			count = choice(format, args, count);
+			count = choice(*format, args, count);
 		}
 		else
 			count += _putchar(*format);
