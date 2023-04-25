@@ -1,26 +1,38 @@
 #include "main.h"
 
 /**
-* print_binary - prints an unsigned integer to standard output in binary form
-* @args: the variable argument list
-* @count: the count of characters printed
-*
-* Return: The updated count of characters printed.
-*/
-
+ * print_binary - converts an unsigned int argument to binary and
+ *               prints it to standard output
+ * @args: the variable argument list
+ * @count: the count of characters printed
+ *
+ * Return: The updated count of characters printed.
+ */
 int print_binary(va_list args, int count)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	unsigned int mask = 1 << ((sizeof(unsigned int) * 8) - 1);
+	unsigned int n = va_arg(args, unsigned int);
+	int binary[32], i = 0;
 
-	while (mask > 0)
+	if (n == 0)
 	{
-		if (num & mask)
-			write_char('1');
-		else
-			write_char('0');
+		_putchar('0');
 		count++;
-		mask >>= 1;
+	}
+	else
+	{
+		while (n > 0)
+		{
+			binary[i] = n % 2;
+			n = n / 2;
+			i++;
+		}
+		i--;
+		while (i >= 0)
+		{
+			_putchar(binary[i] + '0');
+			count++;
+			i--;
+		}
 	}
 	return (count);
 }
