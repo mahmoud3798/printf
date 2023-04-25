@@ -1,4 +1,6 @@
 #include "main.h"
+int count_digit(int i);
+
 
 /**
  * print_int - prints integers.
@@ -11,7 +13,8 @@
 int print_int(va_list args)
 {
 	int n = va_arg(args, int);
-	int l = 0, i = 0, j, num = n;
+	int l = 0, i = 0, num = n;
+	int j = count_digit(n);
 	char number[11];
 
 
@@ -36,9 +39,27 @@ int print_int(va_list args)
 		i++;
 		num /= 10;
 	}
-	for (j = l; j >= 0; j--)
+	for (; l >= 0; l--)
 	{
-		_putchar(number[j]);
+		_putchar(number[l]);
 	}
-	return (l);
+	return (j);
+}
+
+
+int count_digit(int i)
+{
+	unsigned int d = 0;
+	unsigned int u;
+
+	if (i < 0)
+		u = i * -1;
+	else
+		u = i;
+	while (u != 0)
+	{
+		u /= 10;
+		d++;
+	}
+	return (d);
 }
