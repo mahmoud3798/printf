@@ -15,7 +15,7 @@ int print_int(va_list args)
 	int n = va_arg(args, int);
 	int l = 0, i = 0, num = n;
 	int j = count_digit(n);
-	char number[11];
+	char number[j];
 
 
 	if (n == 0)
