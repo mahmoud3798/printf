@@ -14,5 +14,7 @@ int print_percent(int count);
 int print_int(va_list args);
 int print_binary(va_list args, int count);
 int print_n(va_list args);
+int print_integer(va_list args, int count);
+int print_number(int n);
 
 #endif
