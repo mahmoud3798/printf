@@ -90,12 +90,6 @@ int _printf(const char *format, ...)
 				count = print_integer(args, count);
 			else if (*format == 'b')
 				count = print_binary(args, count);
-			else if (*format == 'u')
-				count = print_unsign(args, count);
-			else if (*format == 'o')
-				count = print_octal(args, count);
-			else if (*format == 'X')
-				count = print_hex_upper(args, count);
 			else
 			{
 				_putchar('%');
@@ -105,6 +99,7 @@ int _printf(const char *format, ...)
 		}
 		else
 			count += _putchar(*format);
+
 		format++;
 	}
 	va_end(args);
