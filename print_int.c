@@ -9,20 +9,19 @@
  */
 int print_int(va_list args, int count)
 {
-  int n = va_arg(args, int);
+	int n = va_arg(args, int);
 
-  if (n < 0)
-  {
-    n = -n;
-    _putchar('-');
-    count++;
-  }
+	if (n < 0)
+	{
+		n = -n;
+		_putchar('-');
+		count++;
+	}
+	if (n / 10)
+		count = print_int(args, count);
 
-  if (n / 10)
-    count = print_int(args, count);
+	_putchar((n % 10) + '0');
+	count++;
 
-  _putchar(n % 10 + '0');
-  count++;
-
-  return (count);
+	return (count);
 }
