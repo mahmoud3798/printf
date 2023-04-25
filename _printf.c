@@ -89,6 +89,8 @@ int _printf(const char *format, ...)
 				count = print_percent(count);
 			else if (*format == 'd' || *format == 'i')
 				count = print_int(args);
+			else if (*format == 'b')
+				count = print_binary(args, count);
 			else
 			{
 				_putchar('%');
