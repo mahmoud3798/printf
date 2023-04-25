@@ -1,11 +1,13 @@
 #include "main.h"
+
 /**
- * print_binary - prints an unsigned integer to standard output in binary form
- * @args: the variable argument list
- * @count: the count of characters printed
- *
- * Return: The updated count of characters printed.
- */
+* print_binary - prints an unsigned integer to standard output in binary form
+* @args: the variable argument list
+* @count: the count of characters printed
+*
+* Return: The updated count of characters printed.
+*/
+
 int print_binary(va_list args, int count)
 {
 	unsigned int num = va_arg(args, unsigned int);
