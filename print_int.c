@@ -11,7 +11,7 @@
 int print_int(va_list args, int count)
 {
 	int n = va_arg(args, int);
-	int l = 0, i = 0, num = n, sign = 1;
+	int l = 0, i = 0, j, num = n;
 	char number[11];
 
 
@@ -21,7 +21,7 @@ int print_int(va_list args, int count)
 	}
 	if (n < 0)
 	{
-		sign = -1;
+		n = -n;
 		_putchar('-');
 	}
 	while (num != 0)
@@ -29,16 +29,16 @@ int print_int(va_list args, int count)
 		num /= 10;
 		l++;
 	}
-	num = n * sign;
+	num = n;
 	while (num != 0)
 	{
 		number[i] = (num % 10) + '0';
 		i++;
 		num /= 10;
 	}
-	for (; l >= 0; l--)
+	for (j = l; j >= 0; j--)
 	{
-		_putchar(number[l]);
+		_putchar(number[j]);
 	}
-	return (count);
+	return (l);
 }
