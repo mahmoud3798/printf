@@ -1,31 +1,6 @@
 #include "main.h"
 
 /**
- * _putchar - writes a character to standard output
- * @c: the character to write
- *
- * Return: On success, return 1. On error, return -1.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
- * print_char - prints a single character to standard output
- * @args: the variable argument list
- * @count: the count of characters printed
- *
- * Return: The updated count of characters printed.
- */
-int print_char(va_list args, int count)
-{
-	char c = va_arg(args, int);
-
-	_putchar(c);
-	count++;
-	return (count);
-}
-/**
  * print_string - prints a string to standard output
  * @args: the variable argument list
  * @count: the count of characters printed
@@ -59,6 +34,41 @@ int print_percent(int count)
 	return (count);
 }
 /**
+* choice - function to to store options
+* @format: the format string
+* @args: list
+* @count: integer
+* Return: count
+*/
+int choice(const char *format, va_list args, int count)
+{
+	if (*format == 'c')
+		count = print_char(args, count);
+	else if (*format == 's')
+		count = print_string(args, count);
+	else if (*format == '%')
+		count = print_percent(count);
+	else if (*format == 'd' || *format == 'i')
+		count = print_integer(args, count);
+	else if (*format == 'b')
+		count = print_binary(args, count);
+	else if (*format == 'u')
+		count = print_unsign(args, count);
+	else if (*format == 'o')
+		count = print_octal(args, count);
+	else if (*format == 'X')
+		count = print_hex_upper(args, count);
+	else if (*format == 'x')
+		count = print_hex_lower(args, count);
+	else
+	{
+		_putchar('%');
+		_putchar(*format);
+		count += 2;
+	}
+	return (count);
+}
+/**
  * _printf - prints formatted output to standard output
  * @format: the format string
  * @...: variable arguments to be formatted
@@ -81,22 +91,7 @@ int _printf(const char *format, ...)
 			format++;
 			if (format == NULL)
 				return (-1);
-			if (*format == 'c')
-				count = print_char(args, count);
-			else if (*format == 's')
-				count = print_string(args, count);
-			else if (*format == '%')
-				count = print_percent(count);
-			else if (*format == 'd' || *format == 'i')
-				count = print_integer(args, count);
-			else if (*format == 'b')
-				count = print_binary(args, count);
-			else
-			{
-				_putchar('%');
-				_putchar(*format);
-				count += 2;
-			}
+			count = choice(format, args, count);
 		}
 		else
 			count += _putchar(*format);
