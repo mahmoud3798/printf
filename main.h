@@ -6,6 +6,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define OUTPUT_BUF_SIZE 1024
+#define BUF_FLUSH -1
+
+
 int _printf(const char *format, ...);
 int _putchar(char c);
 int print_string(va_list args, int count);
