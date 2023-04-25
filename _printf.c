@@ -33,41 +33,7 @@ int print_percent(int count)
 	count++;
 	return (count);
 }
-/**
-* choice - function to to store options
-* @format: the format string
-* @args: list
-* @count: integer
-* Return: count
-*/
-int choice(const char *format, va_list args, int count)
-{
-	if (*format == 'c')
-		count = print_char(args, count);
-	else if (*format == 's')
-		count = print_string(args, count);
-	else if (*format == '%')
-		count = print_percent(count);
-	else if (*format == 'd' || *format == 'i')
-		count = print_integer(args, count);
-	else if (*format == 'b')
-		count = print_binary(args, count);
-	else if (*format == 'u')
-		count = print_unsign(args, count);
-	else if (*format == 'o')
-		count = print_octal(args, count);
-	else if (*format == 'X')
-		count = print_hex_upper(args, count);
-	else if (*format == 'x')
-		count = print_hex_lower(args, count);
-	else
-	{
-		_putchar('%');
-		_putchar(*format);
-		count += 2;
-	}
-	return (count);
-}
+
 /**
  * _printf - prints formatted output to standard output
  * @format: the format string
@@ -89,13 +55,31 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (format == NULL)
-				return (-1);
-			count = choice(*format, args, count);
+			if (*format == 'c')
+				count = print_char(args, count);
+			else if (*format == 's')
+				count = print_string(args, count);
+			else if (*format == '%')
+				count = print_percent(count);
+			else if (*format == 'd' || *format == 'i')
+				count = print_integer(args, count);
+			else if (*format == 'b')
+				count = print_binary(args, count);
+			else if (*format == 'u')
+				count = print_unsign(args, count);
+			else if (*format == 'o')
+				count = print_octal(args, count);
+			else if (*format == 'X')
+				count = print_hex_upper(args, count);
+			else
+			{
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+			}
 		}
 		else
 			count += _putchar(*format);
-
 		format++;
 	}
 	va_end(args);
